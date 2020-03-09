@@ -9,7 +9,7 @@
 TARGET     = polymate
 
 CXX        = clang++
-CXXFLAGS   = -std=c++11 \
+CXXFLAGS   = -std=c++17 \
              -Werror -Wpointer-arith -Wcast-qual \
              -Wno-missing-braces -Wempty-body -Wno-error=uninitialized \
              -Wno-error=deprecated-declarations \

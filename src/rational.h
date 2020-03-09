@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include "math.h"
 
@@ -7,6 +9,7 @@ namespace Polymate
 class Rational{
     public:
     
+    Rational();
     Rational(const int);
     Rational(const int, const int);
 
@@ -43,8 +46,8 @@ class Rational{
     
     private:
     
-    unsigned int num;
-    unsigned int den;
+    int num;
+    int den;
 };
 
 }
