@@ -1,12 +1,4 @@
-# Requires the following project directory structure:
-#  /bin
-#  /obj
-#  /src
-
-# Use 'make remove' to clean up the hole project
-
-# Name of target file
-TARGET     = polymate
+ TARGET     = polymate
 
 CXX        = clang++
 CXXFLAGS   = -std=c++17 \
@@ -23,9 +15,10 @@ SRCDIR     = src
 OBJDIR     = obj
 BINDIR     = bin
 
-SOURCES   := $(wildcard $(SRCDIR)/*.cpp)
-INCLUDES  := $(wildcard $(SRCDIR)/*.h)
-OBJECTS   := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
+SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
+INCLUDES := $(wildcard $(SRCDIR)/*.h)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
+DEPENDS  := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.d)
 
 RM         = rm -f
 
@@ -33,8 +26,10 @@ $(BINDIR)/$(TARGET): $(OBJECTS)
 	@$(LD) $@ $(LDFLAGS) $(OBJECTS)
 	@echo "Linking complete!"
 
+-include $(DEPENDS)
+
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
 	@echo "Compiled "$<" successfully!"
 
 .PHONY: clean
