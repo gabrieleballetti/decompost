@@ -1,6 +1,6 @@
 #include "math.h"
 
-namespace Math 
+namespace Polymate 
 {
 
     int abs(const int n)

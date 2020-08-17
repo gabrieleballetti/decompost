@@ -6,15 +6,15 @@
 namespace Polymate
 {
 
-class Rational{
-    public:
-    
+class Rational
+{
+public:  
     Rational();
     Rational(const int);
     Rational(const int, const int);
 
-    inline int Numerator() const { return num; }
-    inline int Denominator() const { return den; }
+    inline int Numerator() const { return m_num; }
+    inline int Denominator() const { return m_den; }
 
     friend bool operator==(const Rational&, const Rational&);
     friend bool operator>(const Rational&, const Rational&);
@@ -22,8 +22,8 @@ class Rational{
     friend bool operator>=(const Rational&, const Rational&);
     friend bool operator<=(const Rational&, const Rational&);
 
-    inline Rational operator+() const { return Rational(num, den); }
-    inline Rational operator-() const { return Rational(-num, den); }
+    inline Rational operator+() const { return Rational(m_num, m_den); }
+    inline Rational operator-() const { return Rational(-m_num, m_den); }
 
     friend Rational operator+(const Rational&, const Rational&);
     friend Rational operator-(const Rational&, const Rational&);
@@ -42,12 +42,13 @@ class Rational{
     friend bool operator>=(const Rational&, const Rational&);
     friend bool operator<=(const Rational&, const Rational&);
 
+    friend Rational abs(const Rational&);
+
     friend std::ostream& operator<<(std::ostream&, const Rational&);
     
-    private:
-    
-    int num;
-    int den;
+private: 
+    int m_num;
+    int m_den;
 };
 
 }

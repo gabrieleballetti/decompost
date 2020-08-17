@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Math {
+namespace Polymate {
 
     int abs(const int);
     int gcd(const int, const int);
